@@ -14,39 +14,56 @@ import { toast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 
 // Opciones de producto
-const sizeOptions = [
-  { id: "5x5", name: "5x5 cm" },
+const sizeOptions1m = [
   { id: "10x10", name: "10x10 cm" },
-  { id: "15x15", name: "15x15 cm" },
+  { id: "13x13", name: "13x13 cm" },
+  { id: "25x25", name: "25x25 cm" },
+  { id: "50x50", name: "50x50 cm" },
+]
+
+const sizeOptions15m = [
+  { id: "150x50", name: "150x50 cm" },
+  { id: "100x50", name: "100x50 cm" },
 ]
 
 const heightOptions = [
-  { id: "1m", name: "1 metro" },
-  { id: "1.5m", name: "1.5 metros" },
-  { id: "2m", name: "2 metros" },
+  { id: "1m", name: "1.00 metro" },
+  { id: "1.5m", name: "1.50 metros" },
 ]
 
 export default function ProductPage() {
   const { addItem } = useCart()
   const [selectedImage, setSelectedImage] = useState("/images/products/malla-electrosoldada-1.png")
-  const [selectedSize, setSelectedSize] = useState(sizeOptions[1].id)
-  const [selectedHeight, setSelectedHeight] = useState(heightOptions[1].id)
+  const [selectedHeight, setSelectedHeight] = useState(heightOptions[0].id)
+  const [selectedSize, setSelectedSize] = useState(sizeOptions1m[1].id)
   const [quantity, setQuantity] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
+
+  const getCurrentSizeOptions = () => {
+    return selectedHeight === "1m" ? sizeOptions1m : sizeOptions15m
+  }
+
+  const handleHeightChange = (heightId: string) => {
+    setSelectedHeight(heightId)
+    // Reset size selection when height changes
+    const newSizeOptions = heightId === "1m" ? sizeOptions1m : sizeOptions15m
+    setSelectedSize(newSizeOptions[0].id)
+  }
 
   const handleAddToCart = () => {
     setIsAdding(true)
 
     // Simular un pequeño retraso para mostrar el estado de carga
     setTimeout(() => {
+      const currentSizeOptions = getCurrentSizeOptions()
       addItem({
         id: 3,
         name: "Malla Electrosoldada",
         image: "/images/products/malla-electrosoldada-1.png",
         quantity: quantity,
         selectedOptions: {
-          Tamaño: sizeOptions.find((s) => s.id === selectedSize)?.name || "",
           Altura: heightOptions.find((h) => h.id === selectedHeight)?.name || "",
+          Tamaño: currentSizeOptions.find((s) => s.id === selectedSize)?.name || "",
         },
       })
 
@@ -145,17 +162,36 @@ export default function ProductPage() {
                   <p className="text-xs text-gray-500 mt-1">Solicite una cotización para obtener el mejor precio</p>
                 </div>
                 <p className="text-gray-700 mb-6">
-                  La malla electrosoldada es una solución robusta y duradera para cercos perimetrales. Fabricada con
-                  alambre de acero galvanizado de alta calidad, ofrece excelente resistencia a la corrosión y a los
-                  impactos. Ideal para delimitar propiedades residenciales, comerciales, industriales y agrícolas con un
-                  producto que combina seguridad y durabilidad.
+                  La malla electrosoldada es una solución robusta y duradera para cercos perimetrales. Disponible en
+                  diferentes alturas y medidas específicas para cada aplicación. Fabricada con alambre de acero
+                  galvanizado de alta calidad.
                 </p>
+
+                {/* Height Selection */}
+                <div className="mb-6">
+                  <h3 className="text-sm font-medium mb-3">Altura</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {heightOptions.map((height) => (
+                      <button
+                        key={height.id}
+                        className={`border rounded py-2 px-3 text-sm font-medium transition-colors ${
+                          selectedHeight === height.id
+                            ? "border-red-600 bg-red-50 text-red-600"
+                            : "border-gray-300 hover:border-red-600"
+                        }`}
+                        onClick={() => handleHeightChange(height.id)}
+                      >
+                        {height.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Size Selection */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium mb-3">Tamaño de cuadrícula</h3>
-                  <div className="grid grid-cols-3 gap-3">
-                    {sizeOptions.map((size) => (
+                  <h3 className="text-sm font-medium mb-3">Medidas disponibles</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {getCurrentSizeOptions().map((size) => (
                       <button
                         key={size.id}
                         className={`border rounded py-2 px-3 text-sm font-medium transition-colors ${
@@ -166,26 +202,6 @@ export default function ProductPage() {
                         onClick={() => setSelectedSize(size.id)}
                       >
                         {size.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Height Selection */}
-                <div className="mb-6">
-                  <h3 className="text-sm font-medium mb-3">Altura</h3>
-                  <div className="grid grid-cols-3 gap-3">
-                    {heightOptions.map((height) => (
-                      <button
-                        key={height.id}
-                        className={`border rounded py-2 px-3 text-sm font-medium transition-colors ${
-                          selectedHeight === height.id
-                            ? "border-red-600 bg-red-50 text-red-600"
-                            : "border-gray-300 hover:border-red-600"
-                        }`}
-                        onClick={() => setSelectedHeight(height.id)}
-                      >
-                        {height.name}
                       </button>
                     ))}
                   </div>
@@ -299,8 +315,8 @@ export default function ProductPage() {
                 <ul>
                   <li>Estructura rígida y uniforme gracias al proceso de electrosoldadura</li>
                   <li>Fabricada con alambre de acero galvanizado para máxima resistencia a la corrosión</li>
-                  <li>Disponible en diferentes tamaños de cuadrícula: 5x5 cm, 10x10 cm y 15x15 cm</li>
-                  <li>Alturas disponibles: 1 metro, 1.5 metros y 2 metros</li>
+                  <li>Disponible en diferentes tamaños de cuadrícula: 10x10 cm, 13x13 cm, 25x25 cm y 50x50 cm</li>
+                  <li>Alturas disponibles: 1.00 metro y 1.50 metros</li>
                   <li>Fácil instalación en postes metálicos o de madera</li>
                   <li>Resistente a impactos y deformaciones</li>
                   <li>Bajo mantenimiento y larga vida útil</li>
@@ -321,28 +337,20 @@ export default function ProductPage() {
                       <td className="py-3">Alambre de acero galvanizado</td>
                     </tr>
                     <tr className="border-b">
+                      <td className="py-3 font-medium">Alturas disponibles</td>
+                      <td className="py-3">1.00m, 1.50m</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-3 font-medium">Medidas para 1.00m</td>
+                      <td className="py-3">10x10, 13x13, 25x25, 50x50 cm</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-3 font-medium">Medidas para 1.50m</td>
+                      <td className="py-3">150x50, 100x50 cm</td>
+                    </tr>
+                    <tr className="border-b">
                       <td className="py-3 font-medium">Proceso de fabricación</td>
                       <td className="py-3">Electrosoldadura por puntos</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Tamaños de cuadrícula</td>
-                      <td className="py-3">5x5 cm, 10x10 cm, 15x15 cm</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Alturas disponibles</td>
-                      <td className="py-3">1 metro, 1.5 metros, 2 metros</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Longitud del rollo</td>
-                      <td className="py-3">25 metros estándar (consultar otras medidas)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Calibre del alambre</td>
-                      <td className="py-3">2.1 mm - 3.0 mm (según modelo)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Resistencia a la tracción</td>
-                      <td className="py-3">400-500 N/mm²</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Resistencia a la corrosión</td>
@@ -351,10 +359,6 @@ export default function ProductPage() {
                     <tr className="border-b">
                       <td className="py-3 font-medium">Vida útil estimada</td>
                       <td className="py-3">15-20 años (dependiendo de condiciones ambientales)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Peso aproximado</td>
-                      <td className="py-3">1.5-3.5 kg/m² (según modelo)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -510,7 +514,7 @@ export default function ProductPage() {
 
         {/* Back to products button */}
         <div className="container py-8 border-t">
-          <Button variant="outline" asChild className="flex items-center gap-2">
+          <Button variant="outline" asChild className="flex items-center gap-2 bg-transparent">
             <Link href="/productos">
               <ArrowLeft className="h-4 w-4" />
               Volver a productos
