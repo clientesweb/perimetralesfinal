@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 0 72% 51%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 0 72% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Fuentes personalizadas */
+.font-anton {
+  font-family: var(--font-anton);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Mejoras de accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Mejoras para contraste */
+.text-gray-600 {
+  color: #4b5563; /* Mejorado para contraste */
+}
+
+.text-gray-500 {
+  color: #6b7280; /* Mejorado para contraste */
+}
+
+.text-gray-400 {
+  color: #9ca3af; /* Mejorado para contraste */
+}
+
+.text-gray-300 {
+  color: #d1d5db; /* Mejorado para contraste en fondos oscuros */
+}
+
+/* Mejoras para enlaces y elementos interactivos */
+a:focus,
+button:focus {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+/* Mejoras para contraste en componentes específicos */
+.bg-red-600 {
+  background-color: #dc2626; /* Rojo más accesible */
+}
+
+.hover\:bg-red-700:hover {
+  background-color: #b91c1c; /* Rojo oscuro más accesible */
+}
+
+.text-red-600 {
+  color: #dc2626; /* Rojo más accesible */
+}
+
+.text-red-500 {
+  color: #ef4444; /* Rojo más accesible */
+}
+
+/* Mejoras para fondos oscuros */
+.bg-gray-900 {
+  background-color: #111827; /* Negro más rico para fondos */
+}
+
+.bg-gray-800 {
+  background-color: #1f2937; /* Gris oscuro más rico */
+}
+
+/* Mejoras para texto sobre fondos oscuros */
+.bg-gray-900 .text-gray-400 {
+  color: #d1d5db; /* Mejor contraste en fondos muy oscuros */
+}
+
+.bg-gray-900 .text-gray-500 {
+  color: #e5e7eb; /* Mejor contraste en fondos muy oscuros */
+}
