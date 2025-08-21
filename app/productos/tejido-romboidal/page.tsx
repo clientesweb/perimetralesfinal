@@ -15,15 +15,23 @@ import { Toaster } from "@/components/ui/toaster"
 
 // Opciones de producto
 const sizeOptions = [
-  { id: "50x50", name: "50x50 mm" },
-  { id: "60x60", name: "60x60 mm" },
-  { id: "75x75", name: "75x75 mm" },
+  { id: "50mm", name: "50 mm" },
+  { id: "63mm", name: "63 mm" },
+  { id: "76mm", name: "76 mm" },
 ]
 
 const heightOptions = [
-  { id: "1m", name: "1 metro" },
-  { id: "1.5m", name: "1.5 metros" },
-  { id: "2m", name: "2 metros" },
+  { id: "1.00m", name: "1.00 m" },
+  { id: "1.20m", name: "1.20 m" },
+  { id: "1.50m", name: "1.50 m" },
+  { id: "1.80m", name: "1.80 m" },
+  { id: "2.00m", name: "2.00 m" },
+]
+
+const gaugeOptions = [
+  { id: "14", name: "Calibre 14" },
+  { id: "14.5", name: "Calibre 14.5" },
+  { id: "16", name: "Calibre 16" },
 ]
 
 export default function ProductPage() {
@@ -31,13 +39,13 @@ export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState("/images/products/tejido-romboidal-1.png")
   const [selectedSize, setSelectedSize] = useState(sizeOptions[1].id)
   const [selectedHeight, setSelectedHeight] = useState(heightOptions[1].id)
+  const [selectedGauge, setSelectedGauge] = useState(gaugeOptions[0].id)
   const [quantity, setQuantity] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
 
   const handleAddToCart = () => {
     setIsAdding(true)
 
-    // Simular un pequeño retraso para mostrar el estado de carga
     setTimeout(() => {
       addItem({
         id: 5,
@@ -45,8 +53,9 @@ export default function ProductPage() {
         image: "/images/products/tejido-romboidal-1.png",
         quantity: quantity,
         selectedOptions: {
-          Tamaño: sizeOptions.find((s) => s.id === selectedSize)?.name || "",
+          "Tamaño de rombo": sizeOptions.find((s) => s.id === selectedSize)?.name || "",
           Altura: heightOptions.find((h) => h.id === selectedHeight)?.name || "",
+          Calibre: gaugeOptions.find((g) => g.id === selectedGauge)?.name || "",
         },
       })
 
@@ -147,8 +156,7 @@ export default function ProductPage() {
                 <p className="text-gray-700 mb-6">
                   El tejido romboidal, también conocido como malla ciclónica o alambrado romboidal, es una solución
                   versátil y económica para cercos perimetrales. Fabricado con alambre de acero galvanizado, ofrece
-                  excelente resistencia a la intemperie y durabilidad. Ideal para delimitar propiedades residenciales,
-                  comerciales, industriales, campos deportivos y áreas agrícolas.
+                  excelente resistencia a la intemperie y durabilidad. Todos los rollos son de 10 metros de longitud.
                 </p>
 
                 {/* Size Selection */}
@@ -186,6 +194,26 @@ export default function ProductPage() {
                         onClick={() => setSelectedHeight(height.id)}
                       >
                         {height.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Gauge Selection */}
+                <div className="mb-6">
+                  <h3 className="text-sm font-medium mb-3">Calibre</h3>
+                  <div className="grid grid-cols-3 gap-3">
+                    {gaugeOptions.map((gauge) => (
+                      <button
+                        key={gauge.id}
+                        className={`border rounded py-2 px-3 text-sm font-medium transition-colors ${
+                          selectedGauge === gauge.id
+                            ? "border-red-600 bg-red-50 text-red-600"
+                            : "border-gray-300 hover:border-red-600"
+                        }`}
+                        onClick={() => setSelectedGauge(gauge.id)}
+                      >
+                        {gauge.name}
                       </button>
                     ))}
                   </div>
@@ -291,24 +319,19 @@ export default function ProductPage() {
                 <p>
                   Fabricado con alambre de acero galvanizado mediante un proceso de entrelazado y torsión, este tejido
                   ofrece una estructura resistente y duradera. El galvanizado proporciona una capa protectora que
-                  previene la corrosión y extiende significativamente la vida útil del producto, incluso en condiciones
-                  climáticas adversas.
+                  previene la corrosión y extiende significativamente la vida útil del producto.
                 </p>
                 <h4>Características principales:</h4>
                 <ul>
                   <li>Fabricado con alambre de acero galvanizado para máxima resistencia a la corrosión</li>
-                  <li>Diseño romboidal que proporciona estabilidad y resistencia</li>
-                  <li>Disponible en diferentes tamaños de rombo: 50x50 mm, 60x60 mm y 75x75 mm</li>
-                  <li>Alturas disponibles: 1 metro, 1.5 metros y 2 metros</li>
+                  <li>Tamaños de rombo disponibles: 50mm, 63mm y 76mm</li>
+                  <li>Alturas disponibles: 1.00m, 1.20m, 1.50m, 1.80m y 2.00m</li>
+                  <li>Calibres disponibles: 14, 14.5 y 16</li>
+                  <li>Todos los rollos son de 10 metros de longitud</li>
                   <li>Fácil instalación en postes metálicos o de madera</li>
                   <li>Permite la visibilidad a través del cerco mientras mantiene la seguridad</li>
                   <li>Económico y de bajo mantenimiento</li>
-                  <li>Adaptable a terrenos irregulares</li>
                 </ul>
-                <p>
-                  Ideal para delimitar propiedades residenciales, comerciales, industriales, campos deportivos, parques,
-                  jardines, áreas agrícolas y cualquier espacio que requiera un cercado efectivo y económico.
-                </p>
               </div>
             </TabsContent>
             <TabsContent value="especificaciones" className="pt-6">
@@ -321,40 +344,32 @@ export default function ProductPage() {
                       <td className="py-3">Alambre de acero galvanizado</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Proceso de fabricación</td>
-                      <td className="py-3">Entrelazado y torsión</td>
-                    </tr>
-                    <tr className="border-b">
                       <td className="py-3 font-medium">Tamaños de rombo</td>
-                      <td className="py-3">50x50 mm, 60x60 mm, 75x75 mm</td>
+                      <td className="py-3">50mm, 63mm, 76mm</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Alturas disponibles</td>
-                      <td className="py-3">1 metro, 1.5 metros, 2 metros</td>
+                      <td className="py-3">1.00m, 1.20m, 1.50m, 1.80m, 2.00m</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-3 font-medium">Calibres</td>
+                      <td className="py-3">14, 14.5, 16</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Longitud del rollo</td>
-                      <td className="py-3">10 metros, 20 metros (consultar otras medidas)</td>
+                      <td className="py-3">10 metros (todos los rollos)</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Calibre del alambre</td>
-                      <td className="py-3">Calibre 12, 14 y 16 (según modelo)</td>
+                      <td className="py-3 font-medium">Proceso de fabricación</td>
+                      <td className="py-3">Entrelazado y torsión</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Resistencia a la tracción</td>
                       <td className="py-3">350-450 N/mm²</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Resistencia a la corrosión</td>
-                      <td className="py-3">Alta, tratamiento galvanizado</td>
-                    </tr>
-                    <tr className="border-b">
                       <td className="py-3 font-medium">Vida útil estimada</td>
                       <td className="py-3">10-15 años (dependiendo de condiciones ambientales)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Peso aproximado</td>
-                      <td className="py-3">1.2-2.5 kg/m² (según modelo)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -409,39 +424,7 @@ export default function ProductPage() {
                     <strong>Tensado:</strong> Utilice tensores para asegurar que el tejido quede correctamente tensado.
                     Un tejido bien tensado proporcionará mayor resistencia y durabilidad.
                   </li>
-                  <li>
-                    <strong>Unión de tramos:</strong> Si necesita unir varios tramos de tejido, superponga los extremos
-                    y únalos con alambre galvanizado en varios puntos.
-                  </li>
-                  <li>
-                    <strong>Acabado:</strong> Una vez instalado todo el tejido, verifique que esté correctamente tensado
-                    y fijado a todos los postes. Corte cualquier exceso de alambre para evitar bordes afilados.
-                  </li>
                 </ol>
-                <h4>Recomendaciones adicionales:</h4>
-                <ul>
-                  <li>
-                    Para terrenos irregulares, puede ser necesario adaptar la altura de los postes para mantener el
-                    tejido nivelado en la parte superior.
-                  </li>
-                  <li>
-                    En zonas con fuertes vientos, considere utilizar postes más robustos y reducir la distancia entre
-                    ellos.
-                  </li>
-                  <li>
-                    Para mayor seguridad, puede instalar el tejido enterrando unos 5-10 cm en el suelo para evitar que
-                    animales o intrusos puedan pasar por debajo.
-                  </li>
-                  <li>
-                    Realice inspecciones periódicas para verificar la tensión del tejido y el estado de los postes,
-                    especialmente después de condiciones climáticas adversas.
-                  </li>
-                </ul>
-                <p>
-                  Si prefiere una instalación profesional, ofrecemos servicios de instalación completos realizados por
-                  nuestro equipo de técnicos experimentados. Consulte por nuestros servicios de instalación para obtener
-                  un presupuesto personalizado.
-                </p>
               </div>
             </TabsContent>
           </Tabs>
@@ -513,7 +496,7 @@ export default function ProductPage() {
 
         {/* Back to products button */}
         <div className="container py-8 border-t">
-          <Button variant="outline" asChild className="flex items-center gap-2">
+          <Button variant="outline" asChild className="flex items-center gap-2 bg-transparent">
             <Link href="/productos">
               <ArrowLeft className="h-4 w-4" />
               Volver a productos
