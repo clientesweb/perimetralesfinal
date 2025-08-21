@@ -16,15 +16,13 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 // Opciones de producto
 const typeOptions = [
-  { id: "simple", name: "Simple (1 hoja)" },
-  { id: "doble", name: "Doble (2 hojas)" },
-  { id: "triple", name: "Triple (3 hojas)" },
+  { id: "simple", name: "Simple" },
+  { id: "doble-cruzada", name: "Doble Cruzada" },
 ]
 
 const diameterOptions = [
   { id: "30cm", name: "30 cm" },
   { id: "45cm", name: "45 cm" },
-  { id: "60cm", name: "60 cm" },
 ]
 
 export default function ProductPage() {
@@ -162,14 +160,14 @@ export default function ProductPage() {
 
                 <p className="text-gray-700 mb-6">
                   La concertina es un alambre de seguridad con cuchillas afiladas diseñado para proporcionar máxima
-                  protección perimetral. Fabricada en acero galvanizado de alta resistencia, ofrece una barrera
-                  altamente efectiva contra intrusiones en propiedades residenciales, comerciales e industriales.
+                  protección perimetral. Disponible en configuración simple y doble cruzada, con diámetros de 30cm y
+                  45cm para adaptarse a diferentes niveles de seguridad requeridos.
                 </p>
 
                 {/* Type Selection */}
                 <div className="mb-6">
                   <h3 className="text-sm font-medium mb-3">Tipo</h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {typeOptions.map((type) => (
                       <button
                         key={type.id}
@@ -189,7 +187,7 @@ export default function ProductPage() {
                 {/* Diameter Selection */}
                 <div className="mb-6">
                   <h3 className="text-sm font-medium mb-3">Diámetro</h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {diameterOptions.map((diameter) => (
                       <button
                         key={diameter.id}
@@ -304,27 +302,16 @@ export default function ProductPage() {
                   resistencia, la concertina cuenta con cuchillas afiladas que actúan como un poderoso elemento
                   disuasorio visual y físico.
                 </p>
-                <p>
-                  Nuestras concertinas están disponibles en diferentes configuraciones para adaptarse a sus necesidades
-                  específicas de seguridad. La versión de hoja simple ofrece una protección básica, mientras que las
-                  versiones de doble y triple hoja proporcionan niveles adicionales de seguridad para entornos que
-                  requieren máxima protección.
-                </p>
                 <h4>Características principales:</h4>
                 <ul>
                   <li>Fabricada en acero galvanizado de alta resistencia a la corrosión</li>
+                  <li>Disponible en configuración simple y doble cruzada</li>
+                  <li>Diámetros disponibles: 30cm y 45cm</li>
                   <li>Cuchillas afiladas con bordes dentados para máxima disuasión</li>
-                  <li>Disponible en diferentes diámetros: 30cm, 45cm y 60cm</li>
-                  <li>Opciones de hoja simple, doble o triple según nivel de seguridad requerido</li>
                   <li>Fácil instalación en muros, cercos y techos</li>
                   <li>Resistente a condiciones climáticas adversas</li>
                   <li>Larga vida útil con mínimo mantenimiento</li>
                 </ul>
-                <p>
-                  Ideal para la protección de viviendas, comercios, industrias, almacenes, centros de datos,
-                  instalaciones gubernamentales y cualquier propiedad que requiera un alto nivel de seguridad
-                  perimetral.
-                </p>
               </div>
             </TabsContent>
             <TabsContent value="especificaciones" className="pt-6">
@@ -337,40 +324,24 @@ export default function ProductPage() {
                       <td className="py-3">Acero galvanizado de alta resistencia</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Diámetros disponibles</td>
-                      <td className="py-3">30cm, 45cm, 60cm</td>
+                      <td className="py-3 font-medium">Tipos</td>
+                      <td className="py-3">Simple, Doble Cruzada</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Tipos</td>
-                      <td className="py-3">Simple (1 hoja), Doble (2 hojas), Triple (3 hojas)</td>
+                      <td className="py-3 font-medium">Diámetros disponibles</td>
+                      <td className="py-3">30cm, 45cm</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Longitud por rollo</td>
-                      <td className="py-3">10 metros estándar (consultar otras medidas)</td>
+                      <td className="py-3">10 metros estándar</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Resistencia a la corrosión</td>
                       <td className="py-3">Alta, tratamiento galvanizado</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Resistencia a la intemperie</td>
-                      <td className="py-3">Alta, soporta lluvia, viento y sol</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Temperatura de trabajo</td>
-                      <td className="py-3">-30°C a 70°C</td>
-                    </tr>
-                    <tr className="border-b">
                       <td className="py-3 font-medium">Vida útil estimada</td>
                       <td className="py-3">10-15 años (dependiendo de condiciones climáticas)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Peso aproximado</td>
-                      <td className="py-3">8-12 kg por rollo (según tipo y diámetro)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Certificaciones</td>
-                      <td className="py-3">Cumple con normas de seguridad industrial</td>
                     </tr>
                   </tbody>
                 </table>
@@ -521,7 +492,7 @@ export default function ProductPage() {
 
         {/* Back to products button */}
         <div className="container py-8 border-t">
-          <Button variant="outline" asChild className="flex items-center gap-2">
+          <Button variant="outline" asChild className="flex items-center gap-2 bg-transparent">
             <Link href="/productos">
               <ArrowLeft className="h-4 w-4" />
               Volver a productos
