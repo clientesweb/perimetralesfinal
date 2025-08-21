@@ -15,15 +15,19 @@ import { Toaster } from "@/components/ui/toaster"
 
 // Opciones de producto
 const colorOptions = [
-  { id: "verde", name: "Verde", hex: "#16a34a" },
   { id: "negro", name: "Negro", hex: "#171717" },
-  { id: "azul", name: "Azul", hex: "#2563eb" },
+  { id: "verde", name: "Verde", hex: "#16a34a" },
+  { id: "marron", name: "Marrón", hex: "#8b4513" },
+  { id: "gris", name: "Gris", hex: "#6b7280" },
 ]
 
 const sizeOptions = [
-  { id: "10m", name: "10m x 5cm" },
-  { id: "20m", name: "20m x 5cm" },
-  { id: "50m", name: "50m x 5cm" },
+  { id: "10m2-50mm", name: "10m² - 50mm" },
+  { id: "10m2-63mm", name: "10m² - 63mm" },
+  { id: "10m2-76mm", name: "10m² - 76mm" },
+  { id: "20m2-50mm", name: "20m² - 50mm" },
+  { id: "20m2-63mm", name: "20m² - 63mm" },
+  { id: "20m2-76mm", name: "20m² - 76mm" },
 ]
 
 export default function CintaCubreCercoClient() {
@@ -146,8 +150,8 @@ export default function CintaCubreCercoClient() {
                 </div>
                 <p className="text-gray-700 mb-6">
                   La cinta cubre cerco es ideal para brindar privacidad y mejorar la estética de su cerco perimetral.
-                  Fabricada con materiales de alta calidad, resistentes a la intemperie y a los rayos UV, garantizando
-                  durabilidad y un aspecto impecable por mucho tiempo.
+                  Disponible en presentaciones de 10m² y 20m², con medidas de 50mm, 63mm y 76mm. Fabricada con
+                  materiales de alta calidad, resistentes a la intemperie y a los rayos UV.
                 </p>
 
                 {/* Color Selection */}
@@ -175,8 +179,8 @@ export default function CintaCubreCercoClient() {
 
                 {/* Size Selection */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium mb-3">Tamaño</h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <h3 className="text-sm font-medium mb-3">Presentación y Medida</h3>
+                  <div className="grid grid-cols-2 gap-3">
                     {sizeOptions.map((size) => (
                       <button
                         key={size.id}
@@ -288,27 +292,17 @@ export default function CintaCubreCercoClient() {
                 <p>
                   La cinta cubre cerco es una solución ideal para quienes buscan mejorar la apariencia de sus cercos
                   perimetrales mientras añaden privacidad a su propiedad. Fabricada con materiales de alta calidad, esta
-                  cinta está diseñada para resistir las condiciones climáticas más adversas, incluyendo la exposición
-                  constante al sol, lluvia y viento.
-                </p>
-                <p>
-                  Nuestras cintas cubre cerco están disponibles en varios colores para adaptarse a cualquier estilo
-                  arquitectónico y preferencia personal. El color verde se integra perfectamente con jardines y espacios
-                  naturales, mientras que el negro ofrece un aspecto más elegante y moderno.
+                  cinta está diseñada para resistir las condiciones climáticas más adversas.
                 </p>
                 <h4>Características principales:</h4>
                 <ul>
-                  <li>Material resistente a los rayos UV, evitando la decoloración con el paso del tiempo</li>
+                  <li>Disponible en presentaciones de 10m² y 20m²</li>
+                  <li>Medidas disponibles: 50mm, 63mm y 76mm</li>
+                  <li>Colores disponibles: negro, verde, marrón y gris</li>
+                  <li>Material resistente a los rayos UV</li>
                   <li>Fácil instalación en cualquier tipo de cerco de alambre</li>
                   <li>Impermeable y resistente a la humedad</li>
-                  <li>No se deforma con los cambios de temperatura</li>
-                  <li>Disponible en diferentes colores y medidas</li>
-                  <li>Proporciona privacidad sin sacrificar seguridad</li>
                 </ul>
-                <p>
-                  Ideal para cercos perimetrales en viviendas, escuelas, clubes deportivos, parques, industrias y
-                  cualquier espacio que requiera un cerramiento estético y funcional.
-                </p>
               </div>
             </TabsContent>
             <TabsContent value="especificaciones" className="pt-6">
@@ -321,36 +315,24 @@ export default function CintaCubreCercoClient() {
                       <td className="py-3">PVC de alta densidad</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Ancho</td>
-                      <td className="py-3">5 cm</td>
+                      <td className="py-3 font-medium">Presentaciones</td>
+                      <td className="py-3">10m² y 20m²</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Longitudes disponibles</td>
-                      <td className="py-3">10m, 20m, 50m</td>
+                      <td className="py-3 font-medium">Medidas disponibles</td>
+                      <td className="py-3">50mm, 63mm, 76mm</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Colores disponibles</td>
-                      <td className="py-3">Verde, Negro, Azul</td>
+                      <td className="py-3">Negro, Verde, Marrón, Gris</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Resistencia UV</td>
                       <td className="py-3">Sí, tratamiento anti-UV</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Resistencia a la intemperie</td>
-                      <td className="py-3">Alta, soporta lluvia, viento y sol</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Temperatura de trabajo</td>
-                      <td className="py-3">-20°C a 70°C</td>
-                    </tr>
-                    <tr className="border-b">
                       <td className="py-3 font-medium">Vida útil estimada</td>
                       <td className="py-3">5-7 años (dependiendo de condiciones climáticas)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Peso</td>
-                      <td className="py-3">Aproximadamente 1.2 kg por rollo de 20m</td>
                     </tr>
                   </tbody>
                 </table>
@@ -483,7 +465,7 @@ export default function CintaCubreCercoClient() {
 
         {/* Back to products button */}
         <div className="container py-8 border-t">
-          <Button variant="outline" asChild className="flex items-center gap-2">
+          <Button variant="outline" asChild className="flex items-center gap-2 bg-transparent">
             <Link href="/productos">
               <ArrowLeft className="h-4 w-4" />
               Volver a productos
