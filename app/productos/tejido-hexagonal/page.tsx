@@ -17,20 +17,20 @@ import { Toaster } from "@/components/ui/toaster"
 const sizeOptions = [
   { id: "13mm", name: '13 mm (1/2")' },
   { id: "25mm", name: '25 mm (1")' },
-  { id: "50mm", name: '50 mm (2")' },
 ]
 
 const heightOptions = [
-  { id: "0.5m", name: "0.5 metro" },
-  { id: "1m", name: "1 metro" },
-  { id: "1.5m", name: "1.5 metros" },
+  { id: "1.00m", name: "1.00 m" },
+  { id: "1.20m", name: "1.20 m" },
+  { id: "1.50m", name: "1.50 m" },
+  { id: "1.80m", name: "1.80 m" },
 ]
 
 export default function ProductPage() {
   const { addItem } = useCart()
   const [selectedImage, setSelectedImage] = useState("/images/products/tejido-hexagonal-1.png")
-  const [selectedSize, setSelectedSize] = useState(sizeOptions[1].id)
-  const [selectedHeight, setSelectedHeight] = useState(heightOptions[1].id)
+  const [selectedSize, setSelectedSize] = useState(sizeOptions[0].id)
+  const [selectedHeight, setSelectedHeight] = useState(heightOptions[0].id)
   const [quantity, setQuantity] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
 
@@ -146,15 +146,14 @@ export default function ProductPage() {
                 </div>
                 <p className="text-gray-700 mb-6">
                   El tejido hexagonal, también conocido como malla de gallinero, es una solución versátil para múltiples
-                  aplicaciones. Fabricado con alambre galvanizado entrelazado en un patrón hexagonal, ofrece excelente
-                  flexibilidad y resistencia. Ideal para cercos, jaulas, protección de cultivos, refuerzo de yeso y
-                  muchas otras aplicaciones residenciales, agrícolas e industriales.
+                  aplicaciones. Disponible en medidas de 13mm (1/2") y 25mm (1") con alturas de 1.00m, 1.20m, 1.50m y
+                  1.80m.
                 </p>
 
                 {/* Size Selection */}
                 <div className="mb-6">
                   <h3 className="text-sm font-medium mb-3">Tamaño de hexágono</h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {sizeOptions.map((size) => (
                       <button
                         key={size.id}
@@ -174,7 +173,7 @@ export default function ProductPage() {
                 {/* Height Selection */}
                 <div className="mb-6">
                   <h3 className="text-sm font-medium mb-3">Altura</h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {heightOptions.map((height) => (
                       <button
                         key={height.id}
@@ -297,8 +296,8 @@ export default function ProductPage() {
                 <ul>
                   <li>Fabricado con alambre galvanizado para protección contra la corrosión</li>
                   <li>Diseño hexagonal que proporciona flexibilidad y resistencia</li>
-                  <li>Disponible en diferentes tamaños de hexágono: 13 mm (1/2"), 25 mm (1") y 50 mm (2")</li>
-                  <li>Alturas disponibles: 0.5 metro, 1 metro y 1.5 metros</li>
+                  <li>Disponible en diferentes tamaños de hexágono: 13 mm (1/2"), 25 mm (1")</li>
+                  <li>Alturas disponibles: 1.00 m, 1.20 m, 1.50 m, 1.80 m</li>
                   <li>Fácil de cortar, doblar y adaptar a diferentes formas y superficies</li>
                   <li>Ligero pero resistente</li>
                   <li>Económico y de bajo mantenimiento</li>
@@ -330,28 +329,16 @@ export default function ProductPage() {
                       <td className="py-3">Alambre de acero galvanizado</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Proceso de fabricación</td>
-                      <td className="py-3">Entrelazado con torsión</td>
-                    </tr>
-                    <tr className="border-b">
                       <td className="py-3 font-medium">Tamaños de hexágono</td>
-                      <td className="py-3">13 mm (1/2"), 25 mm (1"), 50 mm (2")</td>
+                      <td className="py-3">13 mm (1/2"), 25 mm (1")</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Alturas disponibles</td>
-                      <td className="py-3">0.5 metro, 1 metro, 1.5 metros</td>
+                      <td className="py-3">1.00m, 1.20m, 1.50m, 1.80m</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-3 font-medium">Longitud del rollo</td>
-                      <td className="py-3">10 metros, 25 metros, 50 metros (según modelo)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Calibre del alambre</td>
-                      <td className="py-3">Calibre 20, 22, 24 (según modelo)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Tipo de borde</td>
-                      <td className="py-3">Borde reforzado</td>
+                      <td className="py-3 font-medium">Proceso de fabricación</td>
+                      <td className="py-3">Entrelazado con torsión</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-3 font-medium">Resistencia a la corrosión</td>
@@ -360,10 +347,6 @@ export default function ProductPage() {
                     <tr className="border-b">
                       <td className="py-3 font-medium">Vida útil estimada</td>
                       <td className="py-3">5-10 años (dependiendo de condiciones ambientales)</td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-3 font-medium">Peso aproximado</td>
-                      <td className="py-3">0.5-1.2 kg/m² (según modelo)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -526,7 +509,7 @@ export default function ProductPage() {
 
         {/* Back to products button */}
         <div className="container py-8 border-t">
-          <Button variant="outline" asChild className="flex items-center gap-2">
+          <Button variant="outline" asChild className="flex items-center gap-2 bg-transparent">
             <Link href="/productos">
               <ArrowLeft className="h-4 w-4" />
               Volver a productos
