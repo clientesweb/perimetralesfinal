@@ -21,7 +21,7 @@ export function AboutUs() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-xl">
-            <Image src="/sobre-nosotros.jpg" alt="Oficina de Perimetrales las Flores" fill className="object-cover" />
+            <Image src="https://www.perimetraleslasflores.com/sobre-nosotros.jpg" alt="Oficina de Perimetrales las Flores" fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg inline-block">
